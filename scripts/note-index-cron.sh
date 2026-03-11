@@ -6,7 +6,7 @@
 set -e
 
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
-export LANG="ja_JP.UTF-8"
+export LANG="C.UTF-8"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="${1:-$(dirname "$SCRIPT_DIR")}"

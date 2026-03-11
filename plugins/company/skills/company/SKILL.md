@@ -37,7 +37,7 @@ trigger: /company
 
 ### Step 2: オンボーディング（Interactive）
 
-`AskUserQuestion` で対話的にヒアリングする。秘書の口調（丁寧だが親しみやすい）で話す。
+ユーザーに質問して回答を待つ形で対話的にヒアリングする。秘書の口調（丁寧だが親しみやすい）で話す。
 
 #### Step 2a: 事業・活動について
 
@@ -181,7 +181,7 @@ Step 2d でユーザーが選んだ部署のフォルダ・ファイルを作成
 #### 5-3. 各部署のテンプレートとCLAUDE.mdを配置
 
 - `references/departments.md` から各部署の `_template.md` と `CLAUDE.md` を取得して配置する
-- 言語設定に応じて日本語版/英語版を選択
+- テンプレートは日本語版のみ。英語が選択された場合は、テンプレートの内容を英語に翻訳して配置する
 
 #### 5-4. `.company/CLAUDE.md` を生成
 
@@ -194,16 +194,29 @@ Step 2d でユーザーが選んだ部署のフォルダ・ファイルを作成
 
 #### 5-7. note記事インデックスを取得
 
-note記事インデックスを `it/note-article-index.md` に生成する。以下の方法を順に試す:
+note記事インデックスを `it/note-article-index.md` に生成する。
 
-1. プラグインディレクトリ内の `scripts/note-index-update.py` を探して実行する
-2. スクリプトが見つからない場合は、note.com APIに直接アクセスして記事一覧を取得し、`it/note-article-index.md` に書き込む
-   - API: `https://note.com/api/v2/creators/kenji192/contents?kind=note&page=1`
-   - 各記事の `name`（タイトル）と `noteUrl`（URL）を取得
-   - 形式: `1. [タイトル](URL) (日付)` のMarkdownリスト
-3. APIアクセスもできない場合はスキップし、手動実行を案内する
+**WebFetch** で以下のAPIにアクセスして記事一覧を取得する:
+- URL: `https://note.com/api/v2/creators/kenji192/contents?kind=note&page=1`
+- ページネーション: `isLastPage` が `true` になるまで `page=2`, `page=3`... と繰り返す
+- 各記事から `name`（タイトル）と `noteUrl`（URL）と `publishAt`（公開日）を抽出する
 
-**note記事インデックスが空でも組織構築は完了させる。** インデックスは後から更新可能。
+`it/note-article-index.md` に以下の形式で書き込む:
+```markdown
+# note記事インデックス
+
+> **著者**: 久原健司（kenji192）
+> **プロフィール**: https://note.com/kenji192
+> **最終更新**: YYYY-MM-DD
+
+## 記事一覧（新しい順）
+
+1. [記事タイトル](URL) (YYYY-MM-DD)
+2. [記事タイトル](URL) (YYYY-MM-DD)
+...
+```
+
+**APIアクセスが失敗した場合はスキップする。** 組織構築は完了させる。インデックスは `/company` で後から更新を依頼できる。
 
 ### Step 6: 完了サマリー（Automatic）
 
@@ -231,10 +244,11 @@ note記事インデックスを `it/note-article-index.md` に生成する。以
 
 `.company/` が存在する場合に自動で切り替わる。
 
-**起動時に必ず以下の3ファイルを読み込む:**
+**起動時に必ず以下の4ファイルを読み込む:**
 1. `.company/CLAUDE.md` — 組織全体のルール
 2. `.company/secretary/CLAUDE.md` — 秘書の口調・ルール
 3. `.company/it/CLAUDE.md` — 情報システム部の監視ルール（**これを忘れると盗み聞き機能が動かない**）
+4. `.company/it/note-article-index.md` — note記事のタイトル一覧（**これを読まないと関連記事を紹介できない**。ファイルが存在しない場合はスキップ）
 
 ### 基本フロー
 
@@ -370,7 +384,7 @@ PM:
   設計書: 2件
   デバッグログ: 1件（未解決）
 
-最終レビュー: 2026-W10
+最終レビュー: YYYY-WXX
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 何かありますか？
@@ -521,7 +535,7 @@ hr/
 ## 重要な注意事項
 
 - 秘書が常にエントリーポイント。ユーザーに部署を意識させない
-- インタラクティブなステップでは必ず `AskUserQuestion` を使う
+- インタラクティブなステップではユーザーに質問して回答を待つ
 - **常設部署（秘書室・CEO・レビュー・情報システム部）は必ず全て作成する。省略は絶対にNG**
 - **特に情報システム部（it/）を忘れがち。ユーザーが選ばなくても必ず作る**
 - **秘書室の content-seeds/ フォルダも必ず作る。これがCC Company Proの核心機能**

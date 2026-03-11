@@ -85,18 +85,13 @@ cp -r cc-company-pro/plugins/company/skills/company ~/.claude/skills/company
 
 ### note記事インデックスの更新
 
-情報システム部が参照するnote記事インデックスは以下で更新できます:
+情報システム部が参照するnote記事インデックスは、`/company` で「note記事インデックスを更新して」と依頼すると最新化されます。
+
+手動でリポジトリをクローンした場合は、スクリプトでも更新できます:
 
 ```bash
-python3 scripts/note-index-update.py
-```
-
-cron で毎日自動更新する場合:
-
-```bash
-crontab -e
-# 以下を追加:
-0 9 * * * /path/to/cc-company-pro/scripts/note-index-cron.sh >> /tmp/note-index.log 2>&1
+# .company/ があるプロジェクトのルートディレクトリで実行
+python3 /path/to/cc-company-pro/scripts/note-index-update.py
 ```
 
 ## 動作イメージ
