@@ -18,7 +18,7 @@ from pathlib import Path
 
 NOTE_USERNAME = "kenji192"
 API_BASE = f"https://note.com/api/v2/creators/{NOTE_USERNAME}/contents"
-OUTPUT_PATH = Path(__file__).resolve().parent.parent / ".company" / "it" / "note-article-index.md"
+OUTPUT_PATH = Path.cwd() / ".company" / "it" / "note-article-index.md"
 
 JST = timezone(timedelta(hours=9))
 
