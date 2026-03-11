@@ -124,7 +124,7 @@ crontab -e
 ## クレジット
 
 - **ベース**: [Shin-sibainu/cc-company](https://github.com/Shin-sibainu/cc-company) - 仮想カンパニー構築プラグイン
-- **拡張**: 久原健司（Kenji Kuhara / 株式会社プロイノベーション） - 情報システム部の追加、コンテンツ自動蓄積機能、note記事連携
+- **拡張**: 久原健司（Kenji Kuhara / 株式会社プロイノベーション） - 情報システム部の追加、コンテンツ自動蓄積機能、note記事作成サポート
 
 ## ライセンス
 
