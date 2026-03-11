@@ -1,4 +1,4 @@
-# CC Company Template（情報システム部付き）
+# CC Company Pro（情報システム部付き）
 
 仮想会社組織を構築・運営する Claude Code プラグインです。
 [Shin-sibainu/cc-company](https://github.com/Shin-sibainu/cc-company) をベースに、**情報システム部（AI推進マネージャー）** を常設部署として追加しています。
@@ -32,13 +32,13 @@ PM、リサーチ、マーケティング、開発、経理、営業、クリエ
 Claude Code のプラグインマーケットプレイスからインストール:
 
 ```
-/install cc-company-template
+/install cc-company-pro
 ```
 
 または手動でリポジトリをクローン:
 
 ```bash
-git clone https://github.com/KenjiKuhara/cc-company-template.git
+git clone https://github.com/KenjiKuhara/cc-company-pro.git
 ```
 
 ## 使い方
@@ -61,7 +61,7 @@ cron で毎日自動更新する場合:
 ```bash
 crontab -e
 # 以下を追加:
-0 9 * * * /path/to/cc-company-template/scripts/note-index-cron.sh >> /tmp/note-index.log 2>&1
+0 9 * * * /path/to/cc-company-pro/scripts/note-index-cron.sh >> /tmp/note-index.log 2>&1
 ```
 
 ## 情報システム部の動作イメージ
