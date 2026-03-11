@@ -63,16 +63,16 @@ PM、リサーチ、マーケティング、開発、経理、営業、クリエ
 
 ## インストール
 
-Claude Code のプラグインマーケットプレイスからインストール:
-
 ```
-/install cc-company-pro
+/plugin marketplace add KenjiKuhara/cc-company-pro
+/plugin install company@cc-company-pro
 ```
 
-または手動でリポジトリをクローン:
+手動でインストールする場合:
 
 ```bash
 git clone https://github.com/KenjiKuhara/cc-company-pro.git
+cp -r cc-company-pro/plugins/company/skills/company ~/.claude/skills/company
 ```
 
 ## 使い方
@@ -120,6 +120,29 @@ crontab -e
 
 秘書: 「情報システム部に確認しますね。」
 → 情報システム部がIT/AIの専門知識を駆使して全力対応
+
+## ファイル構成
+
+```
+cc-company-pro/
+├── .claude-plugin/
+│   └── marketplace.json
+├── plugins/
+│   └── company/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
+│       └── skills/
+│           └── company/
+│               ├── SKILL.md
+│               └── references/
+│                   ├── departments.md
+│                   └── claude-md-template.md
+├── scripts/
+│   ├── note-index-update.py
+│   └── note-index-cron.sh
+├── README.md
+└── LICENSE
+```
 
 ## クレジット
 

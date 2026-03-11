@@ -1,5 +1,24 @@
 {
   "name": "cc-company-pro",
-  "description": "仮想会社組織を構築・運営するプラグイン（情報システム部付き）。秘書が窓口として何でも相談に乗り、AI推進マネージャーが久原健司のnote記事から有益な情報を提供します。",
-  "plugins": ["company"]
+  "owner": {
+    "name": "KenjiKuhara"
+  },
+  "metadata": {
+    "description": "仮想会社組織を構築・運営するプラグイン（情報システム部付き）。秘書が窓口として何でも相談に乗り、AI推進マネージャーが久原健司のnote記事から有益な情報を提供します。"
+  },
+  "plugins": [
+    {
+      "name": "company",
+      "source": "./plugins/company",
+      "description": "仮想会社組織を構築・運営するスキル。秘書が常駐の窓口として何でも相談に乗り、必要に応じてCEOが判断して各部署に指示を振り分ける。情報システム部がAI推進マネージャーとして常駐。",
+      "version": "1.0.0",
+      "author": {
+        "name": "KenjiKuhara"
+      },
+      "repository": "https://github.com/KenjiKuhara/cc-company-pro",
+      "license": "MIT",
+      "category": "productivity",
+      "tags": ["company", "organization", "secretary", "productivity", "management", "ai"]
+    }
+  ]
 }
